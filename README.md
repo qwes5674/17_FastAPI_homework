@@ -4,16 +4,16 @@
 
 ### 폴더
 C:
-└─homework <br>
-    │  calculator.py <br>
-    │  main.py<br>
-    │  models.py <br>
-    │  readme.md
-    │
-    ├─templates
-    │      index.html
-    │
-    └─__pycache__
+\---homework
+    |   calculator.py
+    |   main.py
+    |   models.py
+    |   readme.md
+    |
+    +---templates
+    |       index.html
+    |
+    \---__pycache__
             calculator.cpython-312.pyc
             main.cpython-312.pyc
             models.cpython-312.pyc
