@@ -3,7 +3,7 @@
 ### 추가기능 : 제곱, 거듭제곱을 계산
 
 ### 폴더
-C:.
+C:
 └─homework
     │  calculator.py
     │  main.py
