@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="/static/favicon.ico" type="image/x-icon">
+    <title>Calculator API</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input {
+            margin-right: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Calculator API</h1>
+    
+    <form id="calcForm" onsubmit="return handleSubmit(event)">
+        <input type="number" id="num1" placeholder="첫 번째 숫자" required>
+        <input type="number" id="num2" placeholder="두 번째 숫자" required>
+        <select id="operator" required>
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="%">%</option>
+            <option value="square">제곱</option>
+            <option value="sqrt">제곱근</option>
+        </select>
+        <button type="submit">계산하기</button>
+    </form>
+
+    <div id="result" class="result"></div>
+
+    <script>
+        async function handleSubmit(event) {
+            event.preventDefault();
+            
+            const num1 = parseInt(document.getElementById('num1').value);
+            const num2 = parseInt(document.getElementById('num2').value);
+            const operator = document.getElementById('operator').value;
+
+            let body;
+
+            if (operator === 'square') {
+                body = JSON.stringify({ number: num1 });
+            } else if (operator === 'sqrt') {
+                body = JSON.stringify({ number: num1 });
+                // num2는 제곱근 계산에 필요 없으므로 사용하지 않음
+            } else {
+                body = JSON.stringify({ num1, num2, operator });
+            }
+
+            const response = await fetch(operator === 'square' || operator === 'sqrt' ? `/${operator}` : '/calculate', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: body,
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                document.getElementById('result').innerText = `결과: ${data.result}`;
+            } else {
+                document.getElementById('result').innerText = `오류: ${data.detail}`;
+            }
+        }
+    </script>
+</body>
+</html>
