@@ -4,10 +4,10 @@
 
 ### 폴더
 C:
-└─homework
-    │  calculator.py
-    │  main.py
-    │  models.py
+└─homework <br>
+    │  calculator.py <br>
+    │  main.py<br>
+    │  models.py <br>
     │  readme.md
     │
     ├─templates
